@@ -40,6 +40,27 @@ bool fechaAno(int mes, int dia){
     return true;
 }
 
+int suma_fibbonaci(int n){
+    int a = 1;
+    int b = 1;
+    int suma = 0;
+
+    while (true){
+        int siguiente = a+b;
+        if (siguiente >= n){
+            break;
+        }
+        if(siguiente % 2 == 0){
+            suma += siguiente;
+        }
+
+        a = b;
+        b = siguiente;
+    }
+
+    return suma;
+}
+
 int main(){
     int opc;
     //cout << "Digite una opcion: ";
@@ -48,7 +69,7 @@ int main(){
     while (opc != 100)
     {
         cout << "************MENU PRINCIPAL*************"<<endl;
-        cout << "1. Problema 1"<<endl<<"2. Problema 2"<<endl<<"3. Problema 3"<<endl<<"4. Problema 4"<<endl<<"5. Problema 5"<<"6. Problema 6"<<endl;
+        cout << "1. Problema 1"<<endl<<"2. Problema 2"<<endl<<"3. Problema 3"<<endl<<"4. Problema 4"<<endl<<"5. Problema 5"<<endl<<"6. Problema 6"<<endl<<"7. Problema 7"<<endl;
         cout <<"Digite su opcion: ";
         cin >> opc;
 
@@ -241,8 +262,17 @@ int main(){
                 cout<<"e es aproximadamente: "<<suma<<endl;
                 break;
             }
+            case 7:{
+                int entero;
+                cout<<"Digite cuantos digitos quiere generar: ";
+                cin>>entero;
+                int result = suma_fibbonaci(entero);
 
-
+                cout<<"El resultado de la suma es: "<<result<<endl;
+                break;
+            }
+            case 8:{
+            }
         }
     }
     return 0;
