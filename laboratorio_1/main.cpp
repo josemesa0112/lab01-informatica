@@ -61,6 +61,91 @@ int suma_fibbonaci(int n){
     return suma;
 }
 
+int multiplos(int a, int b, int c){
+    int suma = 0;
+    for(int i=1;i<c;i++){
+        if(i % a == 0 && i % b != 0){
+            suma += i;
+            cout<<i;
+            if(i + 1 != c){
+                cout<<"+";
+            }
+        }
+    }
+    return suma;
+}
+
+int multiplosComunes(int a, int b, int c){
+    int suma = 0;
+    for(int i=1;i<c;i++){
+        if(i % a == 0 && i % b == 0){
+            suma += i;
+            cout<<i;
+            if(i + 1 != c){
+                cout<<"+";
+            }
+        }
+    }
+    return suma;
+}
+
+bool esPrimo(int n){
+    for(int i=1;i<n;i++){
+        if(n % i == 0 && i != 1 && n != i){
+            return false;
+        }
+    }
+    return true;
+}
+
+int factorPrimo(int n){
+    int primo = 0, factor = 0, mayor = -999;
+    for(int i=1;i<n;i++){
+        if(n % i == 0 && i != 1 && n != i){
+            primo = i;
+            if(n % primo == 0){
+                factor = primo;
+                if(factor > mayor){
+                    mayor = factor;
+                }
+            }
+        }
+    }
+    return mayor;
+}
+
+int primos(int n){
+    int suma = 0, cond = true;
+
+    for(int i=2;i<n;i++){
+        cond = true;
+        for(int j=1;j<=i;j++){
+            if(i % j == 0 && j != 1 && j != i){
+                cond = false;
+            }
+        }
+        if(cond){
+            suma += i;
+        }
+    }
+
+    return suma;
+}
+
+int espiral(int n){
+    int suma = 1, multi = 0, iter = 1,num = 1, k = 1;
+    while(iter < n){
+        multi = k * 2;
+        for(int i=0;i<4;i++){
+            num += multi;
+            suma += num;
+        }
+        k ++;
+        iter += 2;
+    }
+    return suma;
+}
+
 int main(){
     int opc;
     //cout << "Digite una opcion: ";
@@ -69,7 +154,7 @@ int main(){
     while (opc != 100)
     {
         cout << "************MENU PRINCIPAL*************"<<endl;
-        cout << "1. Problema 1"<<endl<<"2. Problema 2"<<endl<<"3. Problema 3"<<endl<<"4. Problema 4"<<endl<<"5. Problema 5"<<endl<<"6. Problema 6"<<endl<<"7. Problema 7"<<endl;
+        cout << "1. Problema 1"<<endl<<"2. Problema 2"<<endl<<"3. Problema 3"<<endl<<"4. Problema 4"<<endl<<"5. Problema 5"<<endl<<"6. Problema 6"<<endl<<"7. Problema 7"<<endl<<"8. Problema 8"<<endl<<"9. Problema 9"<<endl<<"10. Problema 10"<<endl<<"11. Problema 11"<<endl<<"12. Problema 12"<<endl<<"13. Problema 13"<<endl<<"14. Problema 14"<<endl<<"15. Problema 15"<<endl<<"16. Problema 16"<<endl<<"17. Problema 17"<<endl;
         cout <<"Digite su opcion: ";
         cin >> opc;
 
@@ -272,6 +357,153 @@ int main(){
                 break;
             }
             case 8:{
+                int a, b, c, i=1, suma = 0, multiplo = 0, multiplo2 = 0, menor = 0;
+                cout<<"Digite el valor de a: ";
+                cin>>a;
+                cout<<"Digite el valor de b: ";
+                cin>>b;
+                cout<<"Digite el valor de c: ";
+                cin>>c;
+
+                suma += multiplos(a, b, c);
+                suma += multiplos(b, a, c);
+                suma += multiplosComunes(a, b, c);
+
+                cout<<"="<<suma<<endl;
+                break;
+
+            }
+            case 9:{
+                int n, numero = 10, digito = 0, suma = 0;
+                cout<<"Digite el entero: ";
+                cin>>n;
+
+                while(n != 0){
+                    digito = n % numero;
+                    suma += digito * digito;
+                    n /= 10;
+                }
+                cout<<"El resultado de la suma es: "<<suma<<endl;
+                break;
+            }
+            case 10:{
+                int n, primo, iter = 0, num = 1;
+
+                cout<<"Digite el primo que quiere mostrar: ";
+                cin>>n;
+
+                while(iter <= n){
+                    if(esPrimo(num)){
+                        primo = num;
+                        iter ++;
+                        num ++;
+                    }
+                    else{
+                        num ++;
+                    }
+                }
+                cout<<"El primo numero "<<n<< " es: "<<primo<<endl;
+                break;
+            }
+            case 11:{
+                break;
+            }
+            case 12:{
+                int n, factor = 0;
+                cout<<"Digite el numero: ";
+                cin>>n;
+
+                factor = factorPrimo(n);
+                if(factor == 0){
+                    cout<<"El numero "<<n<<" no tiene factor primo"<<endl;
+                }else{
+                cout<<"El mayor factor primo de "<<n<< " es: "<<factor<<endl;
+                }
+                break;
+            }
+            case 13:{
+                int n, suma = 0;
+                cout<<"Digite hasta que numero quiere sumar primos: ";
+                cin>>n;
+
+                suma = primos(n);
+
+                cout<<"El resultado de la suma es: "<<suma<<endl;
+
+                break;
+            }
+            case 14:{
+                break;
+            }
+            case 15:{
+                int n, suma = 0;
+                cout<<"Digite el tamagno de la espiral: ";
+                cin>>n;
+
+                while(n % 2 == 0){
+                cout<<"Digite el tamagno de la espiral(Impar): ";
+                cin>>n;
+                }
+
+                suma = espiral(n);
+
+                cout<<"La suma de la espiral "<<n<<"x"<<n<<" es: "<<suma<<endl;
+                break;
+            }
+            case 16:{
+                int n, serie = 0, contMen = 0, contMay = 0, sem = 0, semilla = 0, num = 0;
+                cout<<"Digite la semilla de la serie Collatz: ";
+                cin>>n;
+
+                for(int i=n;i>0;i--){
+                    contMen = 0;
+                    sem = i;
+                    serie = i;
+                    while(serie != 1){
+                        if(serie % 2 == 0){
+                            serie /= 2;
+                        }
+                        else if(serie % 2 != 0 || serie == 0){
+                            serie = (3 * serie) + 1;
+                        }
+                        contMen ++;
+                    }
+                    if(contMen > contMay){
+                        contMay = contMen;
+                        semilla = sem;
+                    }
+                }
+                num = semilla;
+                while(num != 1){
+                    if(num % 2 == 0){
+                        num /= 2;
+                    }
+                    else if(num % 2 != 0 || num == 0){
+                        num = (3 * num) + 1;
+                    }
+                    cout<<num<<" ";
+                }
+                cout<<endl<<"La serie mas larga es con la semilla "<<semilla<<" teniendo "<<contMay<<" terminos"<<endl;
+                break;
+            }
+            case 17:{
+                int k, a = 1, b = 1, cont = 0, numTriangular = 1;
+                cout<<"Digite el primer numero que tenga k divisores: ";
+                cin>>k;
+
+                while(cont <= k){
+                    cont = 0;
+                    a = numTriangular;
+                    b ++;
+                    numTriangular = a + b;
+                    for(int i=1;i<=numTriangular;i++){
+                        if(numTriangular % i == 0){
+                            cont ++;
+                        }
+                    }
+                }
+                cout<<"El numero es: "<<numTriangular<<" que tiene "<<cont<<" divisores"<<endl;
+                break;
             }
         }
     }
